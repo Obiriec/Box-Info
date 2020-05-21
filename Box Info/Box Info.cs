@@ -1,4 +1,4 @@
-﻿/*  CTRADER GURU --> Indicator Template 1.0.8
+/*  CTRADER GURU --> Indicator Template 1.0.8
 
     Homepage    : https://ctrader.guru/
     Telegram    : https://t.me/ctraderguru
@@ -22,7 +22,7 @@ namespace cAlgo.Indicators
     {
 
         #region Enums
-        
+
         public enum MyColors
         {
 
@@ -183,7 +183,7 @@ namespace cAlgo.Indicators
         #region Identity
 
         /// <summary>
-        /// Nome del prodotto, identificativo, da modificare con il nome della propria creazione 
+        /// Nome del prodotto, identificativo, da modificare con il nome della propria creazione
         /// </summary>
         public const string NAME = "Box Info";
 
@@ -259,7 +259,7 @@ namespace cAlgo.Indicators
         #endregion
 
         #region Property
-        
+
         #endregion
 
         #region Indicator Events
@@ -272,7 +272,7 @@ namespace cAlgo.Indicators
 
             // --> Stampo nei log la versione corrente
             Print("{0} : {1}", NAME, VERSION);
-            
+
         }
 
         /// <summary>
@@ -299,7 +299,7 @@ namespace cAlgo.Indicators
                     _drawBanner(index);
 
                     break;
-                    
+
             }
 
             // <-- Non va si impalla :)
@@ -345,7 +345,7 @@ namespace cAlgo.Indicators
             }
 
             // --> Restituisco l'array con le informazioni
-            double[] result = 
+            double[] result =
             {
                 Math.Round(tsbuy / Corff, 2),
                 Math.Round(tssell / Corff, 2)
@@ -355,7 +355,8 @@ namespace cAlgo.Indicators
 
         }
 
-        private void _drawBox( int index ) {
+        private void _drawBox(int index)
+        {
 
 
             // --> Formatto il testo del box
@@ -389,29 +390,29 @@ namespace cAlgo.Indicators
 
         private void _drawBanner(int index)
         {
-            
+
             // --> Formatto il testo del box
             string tmpSpread = String.Format("{0:0.0}", _getSpreadInformation());
             string tmpGP = String.Format("{0:0.00}", Symbol.UnrealizedGrossProfit);
             string tmpNT = String.Format("{0:0.00}", Symbol.UnrealizedNetProfit);
 
-            string info = String.Format("{0} / {1}", SymbolName, tmpSpread);
+            string info = String.Format("{0} ---> Spread {1}", SymbolName, tmpSpread);
 
             if (ShowGross)
-                info += String.Format(" / {0}", tmpGP);
+                info += String.Format(" / Gross Profit {0}", tmpGP);
 
             if (ShowNet)
-                info += String.Format(" / {0}", tmpNT);
+                info += String.Format(" / Net Profit {0}", tmpNT);
 
             if (ShowLeva)
-                info += String.Format(" / 1:{0}", Account.PreciseLeverage);
+                info += String.Format(" / Leverage 1:{0}", Account.PreciseLeverage);
 
             if (ShowAntimarty)
             {
 
                 double[] antM = _getAntimarty();
 
-                info += String.Format(" / Buy : {0} / Sell : {1}", antM[0], antM[1]);
+                info += String.Format(" / Antimartingala >> / Buy : {0} / Sell : {1}", antM[0], antM[1]);
 
             }
 
